@@ -1,0 +1,500 @@
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    /* below are standard font settings */
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    color: #404040;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    /* causes spacing problems with .footer-logo
+    display: block; */
+}
+
+/* ==================
+    Typography
+===================== */
+
+h1, h2, strong {
+    font-weight: 800;
+}
+
+.accent-color {
+    color: #FFE600;
+}
+
+.hero-title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 1.125rem;
+    color: #000;
+    margin-top: 1.25em;
+}
+
+/* ::after and ::before are pseudo elements which add content to page without adding to HTML */
+.section-title::after {
+    /* Usually leave content blank */
+    content: "";
+    /* Add a display or position prop so it shows up on page! */
+    display: block;
+    width: 60px;
+    border-bottom: 3px solid #FFE600;
+    margin-top: 10px;
+}
+
+/* .section-title on home page are centred */
+.section-title-center::after {
+    margin: 10px auto 0;
+}
+
+.page-title,
+.subtitle {
+    color: #000;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 3rem;
+    margin: 0;
+    /* keeps yellow bar from stretching fully across col at small screens */
+    justify-self: center;
+}
+
+.page-title::after {
+    content: "";
+    display: block;
+    width: 100%;
+    border-bottom: 25px solid #FFE600;
+    margin-top: -40px;
+    margin-left: 10px
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    margin: 1em 0 2em;
+}
+
+.contact-link {
+    color: #000;
+    font-weight: 800;
+}
+
+/* buttons */
+
+.btn {
+    margin-top: 0.5em;
+    padding: 0.5em 1.75em;
+    font-weight: 800;
+    text-decoration: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #FFE600;
+    color: #000;
+    justify-self: start;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: #ffc400;
+    color: #404040;
+}
+
+.btn-form {
+    /* margin-left: auto --- moves btn-form over to the right */
+    /* Only works because contact-form is display: grid */
+    justify-self: end;
+}
+
+/* ==================
+    general layout
+===================== */
+
+.main-grid {
+    display: grid;
+    /* 3 COLUMNS defined.   left margin       main content area    right margin  */
+    /* Minmax 0px coz at very small mobile size the layout breaks */
+    grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr);
+    /* This doesn't have effect at small screens but at large puts gap between .info .col */
+    grid-column-gap: 2em;
+}
+
+@media (min-width: 750px) {
+    .main-grid {
+        /* minmax is amazing so try to use. repeat saves code */
+        grid-template-columns: minmax(1em, 1fr) repeat(3, minmax(150px, 350px)) minmax(1em, 1fr);
+    }
+}
+
+/* navigation */
+
+.header {
+    background: black;
+}
+
+.header-home {
+    /* Only want this to be transparent on home page. NOT others */
+    background: transparent;
+    /* position: absolute takes element out of the page flow and it's ignored */
+    position: absolute;
+    /* Position: absolute changes the width of element so return to normal with width: 100% */
+    width: 100%;
+}
+
+.header-content {
+    display: flex;
+    grid-column: 2 / -2;
+}
+
+.logo-link {
+    background-color: #FFE600;
+    padding-top: 2em;
+}
+
+.nav {
+    /* Creates black full screen with nav links. ONLY for small screens */
+    position: fixed;
+    background: #000;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    /* This shifts full screen menu off screen */
+    left: 100%;
+    transform: translateX(0);
+    transition: transform 250ms;
+}
+
+.navigation-open {
+    /* This will pull back full screen menu back onto screen */
+    transform: translateX(-100%);
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* styling for black full screen nav menu */
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: #FFE600;
+}
+
+.selected {
+    padding-bottom: 0.25em;
+    border-bottom: 2px solid #FFE600;
+}
+
+.open-nav {
+    border: 0;
+    background: 0;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 800;
+    cursor: pointer;
+    padding: 0.5em;
+    /* margin-left: auto pushes element all the way to the right */
+    margin-left: auto;
+}
+
+.close-nav {
+    border: 0;
+    background: 0;
+    color: #FFE600;
+    font-size: 3rem;
+    font-weight: 800;
+    cursor: pointer;
+    padding: 0.5em;
+    color: #FFE600;
+    position: absolute;
+}
+
+@media (min-width: 750px) {
+    /* simple, easy way to hide the open and close nav buttons */
+    .open-nav,
+    .close-nav {
+        display: none;
+    }
+
+    .nav {
+        /* makes the position normal again and takes away the massive full screen nav */
+        position: initial;
+    }
+    
+    .nav-list {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .nav-item {
+        margin-left: 2em;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+    }
+    /* Want .nav ONLY in .header-home to be transparent at larger screens */
+    .header-home .nav {
+        background: transparent;
+    }
+}
+
+/* footer */
+
+.footer {
+    background: #EBEBEB;
+    padding: 4em 0;
+    text-align: center;
+    grid-template-areas:
+    "... social ..."
+    "... main ...";
+}
+.footer-main,
+.social-list {
+    grid-column: 2 / -2;
+}
+
+.footer-logo,
+.footer-text,
+.footer-fineprint {
+    opacity: 0.5;
+}
+
+.footer-main {
+    grid-area: main;
+}
+
+.footer-fineprint {
+    font-size: 0.875rem;
+    /* Leaves margin bottom, left and right at 0. margin-top is 4em */
+    margin: 4em 0 0;
+}
+
+.social-list {
+    grid-area: social;
+    list-style: none;
+    padding: 0;
+    /* Leaves margin top, left and right at 0. margin-bottom is 2em */
+    margin: 0 0 2em;
+    /* So they are next to each other */
+    display: flex;
+    justify-content: center;
+}
+
+.social-link {
+    color: #000;
+    font-size: 1.6875rem;
+    margin: 0 0.5em;
+}
+
+.social-link:hover,
+.social-link:focus {
+    /* Changes opacity while in hover and focus state */
+    color: rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 750px) {
+    .footer {
+        grid-template-areas: 
+          "... main main social ..."
+    }
+
+    .footer-main {
+        text-align: left;
+    }
+    
+    .social-list {
+        justify-content: flex-end;
+    }
+}
+
+/* ==================
+    hero area
+===================== */
+
+.hero {
+    background-image: url('img/hero-bg.jpg');
+    background-size: cover;
+    background-position: bottom;
+    color: #fff;
+    /* Padding-top: 8em because .header-home has position: absolute so is out of page flow */
+    padding: 8em 0 4em;
+}
+
+/* .hero > * means I select all child elements of .hero */
+.hero > * {
+    /* Places all elements in centre column. line 2 is start of 2nd col and -2 is end*/
+    grid-column: 2 / -2;
+}
+
+/* Don't want margin-right on v small or large screens 
+   So used breakpoints that fit THIS design. NOT standard breakpoints! */
+@media (min-width: 400px) and (max-width: 649px) {
+    .hero > * {
+        margin-right: 20%;
+    }
+}
+
+@media (min-width: 750px) {
+    .hero {
+        padding: 10em 0 6em;
+    }
+    .hero > * {
+        grid-column: 2 / span 2;
+    }
+}
+
+/* ==================
+    info section
+===================== */
+
+.info {
+    padding: 4em 0;
+    text-align: center;
+}
+
+.col {
+    grid-column: 2 / -2;
+}
+
+@media (min-width: 750px) {
+    .col {
+        /* each .col should span 1 column */
+        grid-column: span 1;
+    }
+    
+    .col:first-child {
+        /* Sets starting point for first-child .col in .info  Others will fall into place */
+        grid-column: 2 / span 1;
+    }
+}
+
+/* ==================
+    template page
+===================== */
+
+.main-template {
+    padding: 4em 0;
+}
+
+/* .main-template > * means I select all child elements of .main-template */
+.main-template > * {
+    grid-column: 2 / -2;
+}
+
+.main-image {
+    margin: 0 auto 1em;
+    box-shadow: 5px 5px 0px #000, 10px 10px 0px #FFE600;
+    /* Classic box-shadow. Very subtle and opaque
+     box-shadow: 2px 2px 15px rgba(0,0,0, .2); */
+}
+
+@media (min-width: 750px) {
+    .page-title,
+    .subtitle {
+        max-width: 700px;
+    }
+    
+    .subtitle {
+        justify-self: center;
+    }
+
+    .main-image,
+    .contact-text {
+        grid-column: 2 / span 1;
+        margin-top: 2em;
+        /* margin-right: 4em; */
+    }
+
+    .main-text {
+        grid-column: 3 / span 2;
+        /* Makes .main-text span 2 rows instead of 1. Done because contact page had bad spacing */
+        grid-row: span 2;
+        margin-top: 2em;
+    }
+
+    /* takes away margin only in large screen layout */
+    .section-title:first-child {
+        margin-top: 0;
+    }
+
+    .contact-text {
+        order: 2;
+    }
+}
+
+/* ==================
+    form
+===================== */
+
+/* makes form into grid so layout issues are easier to solve */
+.contact-form {
+    display: grid;
+}
+
+label {
+    font-weight: 800;
+}
+
+input,
+textarea {
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+    /* Won't inherit font-family for page so you MUST write this explicit */
+    font-family: inherit;
+}
+
+textarea {
+    /* stops users from changing textarea size */
+    resize: none;
+    height: 100px;
+}
+
+@media (min-width: 750px) {
+    .contact-form {
+        grid-template-columns: repeat(2, 1fr);
+        /* This avoid having any empty cells */
+        grid-auto-flow: dense;
+        grid-column-gap: 1em;
+    }
+
+    .fname-label,
+    .fname-input {
+        grid-column: 1;
+    }
+
+    .email-label,
+    .email-input,
+    .btn-form {
+        grid-column: 2;
+    }
+
+    .message-label,
+    .message-textarea {
+        grid-column: span 2;
+    }
+
+}
