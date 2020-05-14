@@ -1,0 +1,20 @@
+/* Base Styles -------------------- */
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    // below are standard font settings
+    font-family: $font-sans-serif;
+    @include text($font-regular, $line-height: 1.6, $color: $color-text-base);
+}
+
+img {
+    max-width: 100%;
+    // causes spacing problems with .footer-logo
+    // display: block;
+}
+
+h1, h2, strong {
+  font-weight: $font-bold;
+}

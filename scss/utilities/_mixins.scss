@@ -1,0 +1,56 @@
+// Flexbox
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-center-horiz {
+  display: flex;
+  justify-content: center;
+}
+
+// Text - null makes optional arguments
+@mixin text($font-size: null, $font-weight: null,
+            $color: null, $line-height: null) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+    color: $color;
+    line-height: $line-height;
+}
+
+// Sliding navigation
+@mixin nav-slide {
+  border: 0;
+  background: 0;
+  cursor: pointer;
+  padding: 0.5em;
+  @include tablet {
+    display: none;
+  }
+}
+
+// Cover background
+@mixin cover-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+// Link lists (nav and footer)
+@mixin list-style ($margin: 0) {
+  list-style: none;
+  margin: $margin;
+  padding: 0;
+}
+
+@mixin tablet {
+  @media only screen and (min-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin hero-custom-break {
+  @media only screen and (min-width: $mobile) and (max-width: calc(#{$tablet} - 1px)) {
+    @content;
+  }
+}

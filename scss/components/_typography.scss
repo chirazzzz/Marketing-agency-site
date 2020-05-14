@@ -1,0 +1,70 @@
+/* Typography Styles -------------------- */
+
+.accent-color {
+  color: $color-primary;
+}
+
+.hero-title {
+  @include text($font-head-medium, $line-height: 1.2);
+  margin-bottom: 0;
+}
+
+.section {
+  &-title {
+    @include text($font-head-small, $color: $color-text-dark);
+    margin-top: 1.25em;
+  }
+  // ::after and ::before are pseudo elements which add content to page without adding to HTML
+  &-title::after {
+    // Usually leave content blank
+    content: "";
+    // Add a display or position prop so it shows up on page!
+    display: block;
+    width: 60px;
+    border-bottom: 3px solid $color-border;
+    margin-top: 10px;
+  }
+  // .section-title on home page are centred
+  &-title-center::after {
+    margin: 10px auto 0;
+  }
+  &-title:first-child {
+  // takes away margin only in desktop screen layout
+    @include tablet {
+      margin-top: 0;
+    }
+  }
+}
+
+.page {
+  &-title {
+    font-size: $font-head-large;
+    margin: 0;
+    // keeps yellow bar from stretching fully across col at small screens
+    justify-self: center;
+  }
+  // Mixin for page-title and section-title
+  &-title::after {
+    content: "";
+    display: block;
+    width: 100%;
+    border-bottom: 25px solid $color-border;
+    margin-top: -40px;
+    margin-left: 10px
+  }
+}
+
+.page-title,
+.subtitle {
+  color: $color-text-dark;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: $font-head-small;
+  margin: 1em 0 2em;
+  @include tablet {
+    max-width: 700px;
+    justify-self: center;
+  }
+}

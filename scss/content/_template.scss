@@ -1,0 +1,39 @@
+/* ==================
+    template page
+===================== */
+
+.main {
+  &-template {
+    padding: 4em 0;
+  }
+  &-template > * {
+    // .main-template > * means I select all child elements of .main-template
+    grid-column: 2 / -2;
+  }
+  &-image {
+    margin: 0 auto 1em;
+    box-shadow: 5px 5px 0px #000, 10px 10px 0px $color-primary;
+    // Classic box-shadow. Very subtle and opaque
+    // box-shadow: 2px 2px 15px rgba(0,0,0, .2);
+    @include tablet {
+      grid-column: 2 / span 1;
+      margin-top: 2em;
+    }
+  }
+  &-text {
+    @include tablet {
+      grid-column: 3 / span 2;
+      // Makes .main-text span 2 rows instead of 1. Done because contact page had bad spacing
+      grid-row: span 2;
+      margin-top: 2em;  
+    }
+  }
+}
+
+.contact-text {
+  @include tablet {
+    grid-column: 2 / span 1;
+    margin-top: 2em;
+    order: 2;
+  }
+}

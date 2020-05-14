@@ -1,0 +1,56 @@
+/* ==================
+    form
+===================== */
+
+// makes form into grid so layout issues are easier to solve
+.contact-form {
+  display: grid;
+  @media #{$contact-form-break} {
+    grid-template-columns: repeat(2, 1fr);
+    // This avoid having any empty cells
+    grid-auto-flow: dense;
+    grid-column-gap: 1em;
+  }
+}
+
+label {
+  font-weight: $font-bold;
+}
+
+input,
+textarea {
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+  // Won't inherit font-family for page so you MUST write this explicitly
+  font-family: inherit;
+}
+
+textarea {
+  // stops users from changing textarea size
+  resize: none;
+  height: 100px;
+}
+
+@media #{$contact-form-break} {
+
+  .fname {
+    &-label,
+    &-input {
+      grid-column: 1;
+    }
+  }
+
+  .email {
+    &-label,
+    &-input {
+    grid-column: 2;
+    }
+  }
+
+  .message {
+    &-label,
+    &-textarea {
+    grid-column: span 2;
+    }
+  }
+}

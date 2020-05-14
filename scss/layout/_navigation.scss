@@ -1,0 +1,82 @@
+/* Navigation Styles -------------------- */
+
+.nav {
+  // Creates black full screen with nav links. ONLY for small screens
+  position: fixed;
+  background: $black;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  // This shifts full screen menu off screen
+  left: 100%;
+  transform: translateX(0);
+  transition: transform 250ms;
+  @include tablet {
+    position: initial;
+  }
+
+  &-list {
+    @include flex-column;
+    justify-content: space-around;
+    align-items: center;
+    @include list-style;
+    // styling for black full screen nav menu
+    height: 100%;
+    @include tablet {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+  }
+
+  &-item {
+    @include tablet {
+      margin-left: 2em;
+    }
+  }
+
+  &-link {
+    @include text($font-nav-link, $font-bold, $color-text-light);
+    text-decoration: none;
+    @include tablet {
+      font-size: $font-regular;
+    }
+  }
+
+  &-link:hover,
+  &-link:focus {
+    color: $color-primary;
+  }
+}
+
+.navigation-open {
+  // This will pull back full screen menu back onto screen
+  transform: translateX(-100%);
+}
+
+.selected {
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid $color-border;
+}
+
+// Mixin for open-nav and close-nav!
+// border: 0;  background: 0;  cursor: pointer;  padding: 0.5em;
+.open-nav {
+  @include text($font-head-medium, $font-bold, $color-text-light);
+  @include nav-slide;
+  // margin-left: auto pushes element all the way to the right
+  margin-left: auto;  
+}
+
+.close-nav {
+  @include text($font-head-large, $font-bold, $color-primary);
+  @include nav-slide;
+  position: absolute;
+}
+
+// Want .nav ONLY in .header-home to be transparent at larger screens
+.header-home .nav {
+  @include tablet {
+    background: transparent;
+  }
+}

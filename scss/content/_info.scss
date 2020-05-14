@@ -1,0 +1,22 @@
+/* ==================
+    info section
+===================== */
+
+.info {
+  padding: 4em 0;
+  text-align: center;
+}
+
+.col {
+  grid-column: 2 / -2;
+  @include tablet {
+    // each .col should span 1 column
+    grid-column: span 1;
+  }
+  &:first-child {
+    @include tablet {
+      // Sets starting point for first-child .col in .info  Others will fall into place
+      grid-column: 2 / span 1;
+    }
+  }
+}

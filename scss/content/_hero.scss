@@ -1,0 +1,30 @@
+/* ==================
+    hero area
+===================== */
+
+.hero {
+  // Have to remember the file tree for application.css might be different from _hero.scss
+  background-image: url('../img/hero-bg.jpg');
+  @include cover-background;
+  color: $color-text-light;
+  // Padding-top: 8em because .header-home has position: absolute so is out of page flow
+  padding: 8em 0 4em;
+  @include tablet {
+    padding: 10em 0 6em;
+  }
+
+  // .hero > * means I select all child elements of .hero
+  & > * {
+    // Places all elements in centre column. line 2 is start of 2nd col and -2 is end
+    grid-column: 2 / -2;
+    
+    // Don't want margin-right on v small or large screens 
+    // So used breakpoints that fit THIS design. NOT standard breakpoints!
+    @include hero-custom-break {
+      margin-right: 20%;
+    }
+    @include tablet {
+      grid-column: 2 / span 2;
+    }
+  }
+}

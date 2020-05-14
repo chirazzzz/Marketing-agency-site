@@ -1,0 +1,15 @@
+/* Grid Styles -------------------- */
+
+.main-grid {
+  display: grid;
+  // 3 COLUMNS defined.   left margin       main content area    right margin
+  // Minmax 0px coz at very small mobile size the layout breaks
+  grid-template-columns: minmax(1em, 1fr) minmax(0px, 500px) minmax(1em, 1fr);
+  // This doesn't have effect at small screens but at large puts gap between .info .col
+  grid-column-gap: 2em;
+
+  @include tablet {
+    // minmax is amazing so try to use. repeat saves code
+    grid-template-columns: minmax(1em, 1fr) repeat(3, minmax(150px, 350px)) minmax(1em, 1fr);
+  }
+}

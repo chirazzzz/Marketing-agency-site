@@ -1,0 +1,55 @@
+/* Footer Styles -------------------- */
+
+.footer {
+  background: $gallery-grey;
+  padding: 2em 0;
+  text-align: center;
+  grid-template-areas:
+  "... social ..."
+  "... main ...";
+  @include tablet {
+    grid-template-areas: 
+    "... main main social ...";
+    padding: 4em 0;
+  }
+  
+  &-fineprint {
+    opacity: 0.5;
+    font-size: $font-fineprint;
+    // Leaves margin bottom, left and right at 0. margin-top is 4em
+    margin: 4em 0 0;
+  }
+}
+
+.footer-main,
+.social-list {
+  grid-column: 2 / -2;
+}
+// Must be below grid-column value otherwise it breaks
+.footer-main {
+  grid-area: main;
+  @include tablet {
+    text-align: left;
+  }
+}
+
+.social {
+  &-list {
+    grid-area: social;
+    @include list-style(0 0 2em);
+    // So they are in a row NOT column!
+    @include flex-center-horiz;
+    @include tablet {
+      justify-content: flex-end;
+    }
+  }
+  &-link {
+    @include text($font-nav-link, $color: $black);
+    margin: 0 0.5em;
+  }
+  &-link:hover,
+  &-link:focus {
+    // Changes opacity while in hover and focus state
+    color: rgba($black, 0.4);
+  }
+}

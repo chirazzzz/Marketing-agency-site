@@ -1,0 +1,25 @@
+/* Button Styles -------------------- */
+
+.btn {
+  @include text($font-weight: $font-bold, $color: $black);
+  margin-top: 0.5em;
+  padding: 0.5em 1.75em;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  background: $color-primary;
+  justify-self: start;
+  &:hover,
+  &:focus {
+    background: $color-button-hover;
+    color: $color-text-base;
+  }
+  &-form {
+    // margin-left: auto --- moves btn-form over to the right
+    // Only works because contact-form is display: grid
+    justify-self: end;
+    @include tablet {
+      grid-column: 2;
+    }
+  }
+}

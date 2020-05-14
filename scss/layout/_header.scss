@@ -1,0 +1,22 @@
+/* Header Styles -------------------- */
+
+.header {
+  background: $black;
+  &-home {
+    // Only want this to be transparent on home page. NOT others
+    background: transparent;
+    // position: absolute takes element out of the page flow and it's ignored
+    position: absolute;
+    // Position: absolute changes the width of element so return to normal with width: 100%
+    width: 100%;
+  }
+  &-content {
+    display: flex;
+    grid-column: 2 / -2;
+  }
+}
+
+.logo-link {
+  background-color: $color-primary;
+  padding-top: 2em;
+}

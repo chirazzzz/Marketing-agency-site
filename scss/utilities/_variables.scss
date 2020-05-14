@@ -1,0 +1,45 @@
+// Descriptive color variables
+
+$white          : #fff;
+$black          : #000;
+$grey           : #404040;
+$turbo-yellow   : #FFE600;
+$amber          : #FFC400; 
+$gallery-grey   : #EBEBEB;
+
+// Functional color variables
+
+$color-primary      : $turbo-yellow;
+
+$color-text-light   : $white;
+$color-text-base    : $grey;
+$color-text-dark    : $black;
+
+$color-border       : $turbo-yellow;
+
+$color-link-default : $white;
+
+$color-button-back  : $turbo-yellow;
+$color-button-hover : $amber;
+
+$color-footer-back  : $gallery-grey;
+
+// Font stacks
+
+$font-sans-serif    : "Montserrat", sans-serif;
+
+// Font properties
+
+$font-bold          : 800;
+$font-fineprint     : 0.875rem;
+$font-regular       : 1rem;
+$font-head-small    : 1.125rem;
+$font-head-medium   : 1.5rem;
+$font-head-large    : 3rem;
+$font-nav-link      : 2rem;
+
+// Media query breakpoints
+
+$mobile: 400px;
+$tablet: 750px;
+$contact-form-break: '(min-width: 800px)';
